@@ -21,33 +21,33 @@ export default function Registration() {
   //   setIsChecked(event.target.checked);
   // };
 
-  const handleLogin = (event) => {
-    event.preventDefault();
-    navigate("/");
-  };
-
-  // const handleLogin = async () => {
-  //   try {
-  //     await axios
-  //       .post(`${URL}/tutors/login`, {
-  //         email: loginEmail,
-  //         password: loginPassword,
-  //       })
-  //       .then((res) => {
-  //         console.log({ res: res });
-  //         if (res?.data?.token) {
-  //           window.localStorage.setItem("tutor-auth-key", res.data.token);
-  //           window.localStorage.setItem("tutor", res.data.doc);
-  //           navigate("/home");
-  //           window.location.reload();
-  //         }
-  //         setErrors("Invalid credentials");
-  //       });
-  //   } catch (error) {
-  //     console.log({ error: error });
-  //     setErrors("Invalid credentials");
-  //   }
+  // const handleLogin = (event) => {
+  //   event.preventDefault();
+  //   navigate("/");
   // };
+
+  const handleLogin = async () => {
+    try {
+      await axios
+        .post(`${URL}/tutors/login`, {
+          email: loginEmail,
+          password: loginPassword,
+        })
+        .then((res) => {
+          console.log({ res: res });
+          if (res?.data?.token) {
+            window.localStorage.setItem("tutor-auth-key", res.data.token);
+            window.localStorage.setItem("tutor", res.data.doc);
+            navigate("/");
+            window.location.reload();
+          }
+          setErrors("Invalid credentials");
+        });
+    } catch (error) {
+      console.log({ error: error });
+      setErrors("Invalid credentials");
+    }
+  };
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);

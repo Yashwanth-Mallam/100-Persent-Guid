@@ -34,27 +34,27 @@ export default function Registration() {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
   };
   
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  //   try {
-  //     const response = await axios.post(`${URL}/tutors/register`,formValues);
+    try {
+      const response = await axios.post(`${URL}/tutors/register`,formValues);
    
-  //     if (response.data.status === true) {
-  //       setSuccess("Registration successful."); 
-  //       alert("Registration successful ")
-  //       navigate("/");
-  //       window.location.reload();
-  //     } else {
-  //       alert("Retry after some time");
-  //     }
+      if (response.data.status === true) {
+        setSuccess("Registration successful."); 
+        alert("Registration successful ")
+        navigate("/");
+        window.location.reload();
+      } else {
+        alert("Retry after some time");
+      }
       
 
-  //   } catch (error) {
-  //     console.log(error);
-  //     setErrors("Registration failed. Please try again later.");
-  //   }
-  // };
+    } catch (error) {
+      console.log(error);
+      setErrors("Registration failed. Please try again later.");
+    }
+  };
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -86,7 +86,7 @@ export default function Registration() {
             elements on Dri{" "}
           </p>
         </div>
-        <form  onSubmit={handleLogin} method="POST">
+        <form  onSubmit={handleSubmit} method="POST">
           <div>
             <label
               htmlFor="name"
